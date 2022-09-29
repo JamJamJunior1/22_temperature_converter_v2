@@ -42,4 +42,3 @@ if __name__ == "__main__":
     root.title("Temperature Convertor")
     something = Converter()
     root.mainloop()
-
