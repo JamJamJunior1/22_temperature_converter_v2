@@ -70,7 +70,7 @@ class Help:
         partner.help_button.config(state=NORMAL)
         self.help_box.destroy()
 
-# main routine - this needws main fixing
+# main routine - this needs main fixing
 if __name__ == "__main__":
     root = Tk()
     root.title("Temperature Converter")
