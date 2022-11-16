@@ -55,8 +55,54 @@ class Converter:
         self.help_button = Button(self.hist_help_frame, font="Arial 12 bold", fg="purple", bg=background_color, pady=10, text="Help", width=5)
         self.help_button.grid(row=0, column=1)
 
+    def temp_convert(self, low):
+        print(low)
 
-if __name__ == "__main__":
+        error = "red2"   # Red background for when entry box has errors
+
+        # Retrieve amount entered into Entry field
+        to_convert = self.to_convert_entry.get()
+
+        try:
+            to_convert = float(to_convert)
+            has_errors = "no"
+
+            # Check and convert to Fahrenheit
+            if low == -273 and to_convert >= low:
+                fahrenheit = (to_convert * 9/5) + 32
+                to_convert = self.round_it(to_convert)
+                fahrenheit = self.round_it(fahrenheit)
+                answer = "{} degrees C is {} degrees F".format(to_convert, fahrenheit)
+
+            # Check and convert to Centigrade
+            elif low == -459 and to_convert >= low:
+                celsius = (to_convert - 32) * 5/9
+                to_convert = self.round_it(to_convert)
+                celsius = self.round_it(celsius)
+                answer = "{} degrees C is {} degrees F".format(to_convert, celsius)
+
+            else:
+                # input is invalid (too cold)
+                answer = "Too Cold!"
+                has_errors = "yes"
+
+            # Display answer
+            if has_errors == "no":
+                self.converted_label.configure(text=answer, fg="blue")
+                self.to_convert_entry.configure(bg="white")
+            else:
+                self.converted_label.configure(text=answer, fg="red")
+                self.to_convert_entry.configure(bg=error)
+
+            # Add Answer to list for History
+            if answer != "Too Cold":
+                self.all_calculations.append(answer)
+                print(self.all_calculations)
+
+        except ValueError:
+
+
+if __name__ == "__main__
     root = Tk()
     root.title("Temperature Converter")
     something = Converter(root)
